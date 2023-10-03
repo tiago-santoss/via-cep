@@ -1,0 +1,64 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: Integração com API pública ViaCEP
+  description: Integração com API ViaCEP
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+tags:
+  - name: cep
+    description: Cep Controller
+paths:
+  /cep:
+    get:
+      summary: Endpoint para consulta de cep
+      operationId: searchCep
+      tags:
+        - cep
+      parameters:
+        - name: cep
+          in: query
+          description: Search CEP
+          example: '04538133'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CepResponse"
+security:
+  - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    CepResponse:
+      type: object
+      properties:
+        cep:
+          type: string
+        logradouro:
+          type: string
+        complemento:
+          type: string
+        bairro:
+          type: string
+        localidade:
+          type: string
+        uf:
+          type: string
+        ibge:
+          type: string
+        gia:
+          type: string
+        ddd:
+          type: string
+        siafi:
+          type: string
