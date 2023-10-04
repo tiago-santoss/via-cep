@@ -1,5 +1,6 @@
 package br.com.api.cep.viacepapi.client;
 
+import br.com.api.cep.viacepapi.exception.FormatoCepInvalidoException;
 import br.com.api.cep.viacepapi.models.CepResponseRepresentation;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface ViaCepFeignClient {
 
     @GetMapping("/{cep}/json/")
-    CepResponseRepresentation searchCep(@RequestParam("cep") String cep);
-
+    CepResponseRepresentation searchCep(@RequestParam("cep") String cep) throws FormatoCepInvalidoException;
 }
+
+
