@@ -32,7 +32,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(new ApiError(errors), status);
     }
 
-    @ExceptionHandler(NotFoundException.class)
+    @ExceptionHandler(FormatCepInvalidException.class)
     public ResponseEntity<ApiError> handleNotFoundException(NotFoundException ex) {
         return new ResponseEntity<>(new ApiError(Collections.singletonList(ex.getMessage())), HttpStatus.NOT_FOUND);
     }
