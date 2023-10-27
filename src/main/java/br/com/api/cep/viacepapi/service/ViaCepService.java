@@ -5,7 +5,6 @@ import br.com.api.cep.viacepapi.exception.FormatCepInvalidException;
 import br.com.api.cep.viacepapi.exception.NotFoundException;
 import br.com.api.cep.viacepapi.models.CepResponseRepresentation;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -23,7 +22,7 @@ public class ViaCepService {
 
         var response = feignClient.searchCep(cep);
 
-        if (Objects.isNull(response) || response.getCep() == null) {
+        if (Objects.isNull(response)) {
             throw new NotFoundException("CEP não encontrado.");
         }
         return response;
